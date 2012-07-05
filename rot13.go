@@ -11,20 +11,26 @@ type rot13Reader struct {
 }
 
 func (r *rot13Reader) Read(buf []byte) (int, error) {
-    a := "a"[0]
-    z := "z"[0]
-
     n, err := r.r.Read(buf)
 
     for i, v := range(buf) {
-        p := v + 13
-        if p > z {
-            p = a + (p - z)
-        }
-        buf[i] = p
+        buf[i] = rot13(v)
     }
 
     return n, err
+}
+
+func rot13(l byte) byte {
+    a := "a"[0]
+    z := "z"[0]
+
+    p := l + 13
+
+    if p > z {
+        return a + p - z
+    }
+
+    return p
 }
 
 func main() {
