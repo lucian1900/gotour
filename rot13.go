@@ -21,13 +21,20 @@ func (r *rot13Reader) Read(buf []byte) (int, error) {
 }
 
 func rot13(l byte) byte {
-    a := "a"[0]
-    z := "z"[0]
+    var a, z byte
+
+    if 'a' <= l && l <= 'z' {
+        a = 'a'
+        z = 'z'
+    } else if 'A' <= l && l <= 'Z' {
+        a = 'A'
+        z = 'Z'
+    }
 
     p := l + 13
 
     if p > z {
-        return a + p - z
+        return a + p - z - 1
     }
 
     return p
