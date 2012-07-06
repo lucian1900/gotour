@@ -32,7 +32,7 @@ func Same(t1, t2 *tree.Tree) bool {
         i1, ok1 := <- ch1
         i2, ok2 := <- ch2
 
-        if ok1 && ok2 && i1 != i2 {
+        if ok1 != ok2 || (ok1 == true && ok2 == true && i1 != i2) {
             return false
         }
     }
