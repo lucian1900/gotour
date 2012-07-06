@@ -29,6 +29,8 @@ func rot13(l byte) byte {
     } else if 'A' <= l && l <= 'Z' {
         a = 'A'
         z = 'Z'
+    } else {
+        return l
     }
 
     p := l + 13
